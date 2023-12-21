@@ -9,3 +9,5 @@ const NotFound: NextPage = () => {
     </div>
   );
 };
+
+export default NotFound;
