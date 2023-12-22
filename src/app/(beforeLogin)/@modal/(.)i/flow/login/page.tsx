@@ -1,3 +1,10 @@
+import LoginModal from "@/app/(beforeLogin)/_component/LoginModal";
+
 export default function Page() {
-  return "패러렐 모달";
+  return (
+    <>
+      인터셉팅 라우팅
+      <LoginModal />
+    </>
+  );
 }

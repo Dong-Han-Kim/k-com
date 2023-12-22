@@ -1,5 +1,7 @@
-import Image from "next/image";
+import LoginModal from "@/app/(beforeLogin)/_component/LoginModal";
 
-export default function Home() {
-  return <main>로그인 모달</main>;
+export default function Page() {
+  return (
+    <LoginModal />
+  );
 }
