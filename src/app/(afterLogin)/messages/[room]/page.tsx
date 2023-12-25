@@ -20,14 +20,14 @@ export default function ChatRoom() {
     {
       messageId: 1,
       roomId: 123,
-      id: "donghan",
+      id: "dong",
       content: "안녕하세요.",
       createdAt: new Date(),
     },
     {
       messageId: 2,
       roomId: 123,
-      id: "hero",
+      id: "han",
       content: "안녕히가세요.",
       createdAt: new Date(),
     },
@@ -50,7 +50,7 @@ export default function ChatRoom() {
       </Link>
       <div className={style.list}>
         {messages.map((m) => {
-          if (m.id === "donghan") {
+          if (m.id === "dong") {
             // 내 메시지면
             return (
               <div

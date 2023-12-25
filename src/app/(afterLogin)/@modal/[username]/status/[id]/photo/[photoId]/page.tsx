@@ -1,7 +1,7 @@
-import BackButton from "@/app/(afterLogin)/_component/BackButton";
-import style from "./singlePost.module.css";
 import CommentForm from "@/app/(afterLogin)/[username]/status/[id]/_component/CommentForm";
-import SinglePost from "@/app/(afterLogin)/[username]/status/[id]/_component/SinglePost";
+import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
+import style from "./photoModal.module.css";
+import PhotoModalCloseButton from "@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/PhotoModalCloseButton";
 import {
   dehydrate,
   HydrationBoundary,
@@ -9,13 +9,15 @@ import {
 } from "@tanstack/react-query";
 import { getSinglePost } from "@/app/(afterLogin)/[username]/status/[id]/_lib/getSinglePost";
 import { getComments } from "@/app/(afterLogin)/[username]/status/[id]/_lib/getComments";
+import SinglePost from "@/app/(afterLogin)/[username]/status/[id]/_component/SinglePost";
 import React from "react";
 import Comments from "@/app/(afterLogin)/[username]/status/[id]/_component/Comments";
+import ImageZone from "@/app/(afterLogin)/@modal/[username]/status/[id]/photo/[photoId]/_component/ImageZone";
 
 type Props = {
   params: { id: string };
 };
-export default async function Page({ params }: Props) {
+export default async function Default({ params }: Props) {
   const { id } = params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
@@ -29,15 +31,13 @@ export default async function Page({ params }: Props) {
   const dehydratedState = dehydrate(queryClient);
 
   return (
-    <div className={style.main}>
+    <div className={style.container}>
       <HydrationBoundary state={dehydratedState}>
-        <div className={style.header}>
-          <BackButton />
-          <h3 className={style.headerTitle}>게시하기</h3>
-        </div>
-        <SinglePost id={id} />
-        <CommentForm id={id} />
-        <div>
+        <PhotoModalCloseButton />
+        <ImageZone id={id} />
+        <div className={style.commentZone}>
+          <SinglePost id={id} noImage />
+          <CommentForm id={id} />
           <Comments id={id} />
         </div>
       </HydrationBoundary>
