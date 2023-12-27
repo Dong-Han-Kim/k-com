@@ -15,10 +15,6 @@ const User = [
   { id: "catts", nickname: "Mark", image: faker.image.avatar() },
 ];
 const Posts = [];
-const delay = (ms: number) =>
-  new Promise((res) => {
-    setTimeout(res, ms);
-  });
 
 export const handlers = [
   http.post("/api/login", () => {
@@ -48,8 +44,7 @@ export const handlers = [
       },
     });
   }),
-  http.get("/api/postRecommends", async ({ request }) => {
-    await delay(3000);
+  http.get("/api/postRecommends", ({ request }) => {
     const url = new URL(request.url);
     const cursor = parseInt(url.searchParams.get("cursor") as string) || 0;
     return HttpResponse.json([
@@ -103,7 +98,6 @@ export const handlers = [
     ]);
   }),
   http.get("/api/followingPosts", async ({ request }) => {
-    await delay(3000);
     return HttpResponse.json([
       {
         postId: 1,
