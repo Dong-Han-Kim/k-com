@@ -97,7 +97,7 @@ export const handlers = [
       },
     ]);
   }),
-  http.get("/api/followingPosts", async ({ request }) => {
+  http.get("/api/followingPosts", ({ request }) => {
     return HttpResponse.json([
       {
         postId: 1,
