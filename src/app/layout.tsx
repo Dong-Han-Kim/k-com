@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { MSWComponent } from "@/app/_component/MSWComponent";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import {MSWComponent} from "@/app/_component/MSWComponent";
 import AuthSession from "@/app/_component/AuthSession";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "K. 무슨 일이 일어나고 있나요? / k",
@@ -12,15 +12,19 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  children: React.ReactNode;
+  children: React.ReactNode,
 };
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({
+  children,
+}: Props) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MSWComponent />
-        <AuthSession>{children}</AuthSession>
+      <MSWComponent />
+      <AuthSession>
+        {children}
+      </AuthSession>
       </body>
     </html>
-  );
+  )
 }

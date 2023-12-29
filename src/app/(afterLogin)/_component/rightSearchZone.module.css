@@ -17,13 +17,21 @@
 
 .search input {
   outline: none;
-  background-color: inherit;
+  background-color: transparent;
   border: none;
   padding: 12px;
   margin-left: 5px;
   font-size: 15px;
+  width: 100%;
 }
-
+@media (prefers-color-scheme: dark) {
+  .search {
+    background-color: rgb(22, 24, 28);
+  }
+  .search input {
+    color: white;
+  }
+}
 .filterTitle {
   background: #ffffff;
   padding: 12px 16px;
@@ -35,14 +43,26 @@
   border: 1px solid rgb(239, 243, 244);
   margin-top: 12px;
 }
-
+@media (prefers-color-scheme: dark) {
+  .filterTitle {
+    background: black;
+    border-color: rgb(47, 51, 54);
+    color: white;
+  }
+}
 .filterSection {
   padding: 0 16px 12px;
   margin-bottom: 16px;
   border-radius: 16px;
   border: 1px solid rgb(239, 243, 244);
 }
-
+@media (prefers-color-scheme: dark) {
+  .filterSection {
+    background: black;
+    border-color: rgb(47, 51, 54);
+    color: white;
+  }
+}
 .filterSection label {
   font-size: 15px;
   font-weight: bold;

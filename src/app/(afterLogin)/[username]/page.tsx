@@ -1,41 +1,41 @@
-import style from "./profile.module.css";
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import style from './profile.module.css';
+import {dehydrate, HydrationBoundary, QueryClient} from "@tanstack/react-query";
 import UserPosts from "@/app/(afterLogin)/[username]/_component/UserPosts";
 import UserInfo from "@/app/(afterLogin)/[username]/_component/UserInfo";
-import { getUserPosts } from "@/app/(afterLogin)/[username]/_lib/getUserPosts";
-import { getUserServer } from "@/app/(afterLogin)/[username]/_lib/getUserServer";
-import { auth } from "@/auth";
-import { User } from "@/model/User";
+import {getUserPosts} from "@/app/(afterLogin)/[username]/_lib/getUserPosts";
+import {getUserServer} from "@/app/(afterLogin)/[username]/_lib/getUserServer";
+import {auth} from "@/auth";
+import {User} from "@/model/User";
 
-export async function generateMetadata({ params }: Props) {
-  const user: User = await getUserServer({
-    queryKey: ["users", params.username],
-  });
+export async function generateMetadata({params}: Props) {
+  const user: User = await getUserServer({ queryKey: ["users", params.username] });
   return {
-    title: `${user.nickname} (${user.id}) / k`,
+    title: `${user.nickname} (${user.id}) / Z`,
     description: `${user.nickname} (${user.id}) 프로필`,
-  };
+    openGraph: {
+      title: `${user.nickname} (${user.id}) / Z`,
+      description: `${user.nickname} (${user.id}) 프로필`,
+      images: [
+        {
+          url: `https://z.nodebird.com${user.image}`,
+          width: 400,
+          height: 400,
+        },
+      ]
+    }
+  }
 }
 
+
 type Props = {
-  params: { username: string };
-};
-export default async function Profile({ params }: Props) {
-  const { username } = params;
+  params: { username: string },
+}
+export default async function Profile({params}: Props) {
+  const {username} = params;
   const session = await auth();
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
-    queryKey: ["users", username],
-    queryFn: getUserServer,
-  });
-  await queryClient.prefetchQuery({
-    queryKey: ["posts", "users", username],
-    queryFn: getUserPosts,
-  });
+  await queryClient.prefetchQuery({queryKey: ['users', username], queryFn: getUserServer})
+  await queryClient.prefetchQuery({queryKey: ['posts', 'users', username], queryFn: getUserPosts})
   const dehydratedState = dehydrate(queryClient);
 
   return (
@@ -47,5 +47,5 @@ export default async function Profile({ params }: Props) {
         </div>
       </HydrationBoundary>
     </main>
-  );
+  )
 }

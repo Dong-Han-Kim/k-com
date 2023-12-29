@@ -6,7 +6,7 @@ import SearchResult from "@/app/(afterLogin)/search/_component/SearchResult";
 import { Metadata } from "next";
 
 type Props = {
-  searchParams: { q: string; f?: string; pf?: string };
+  searchParams: { q: string, f?: string, pf?: string };
 };
 
 export async function generateMetadata({

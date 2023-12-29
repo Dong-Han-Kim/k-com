@@ -1,7 +1,7 @@
 .container {
   display: flex;
   align-items: stretch;
-  background-color: #fff;
+  background-color: rgb(var(--background-end-rgb));
 }
 
 .leftSectionWrapper {
@@ -112,9 +112,16 @@
 }
 .rightSectionInner {
   height: 100%;
-  width: 600px;
   display: flex;
   justify-content: space-between;
+}
+@media all and (min-width: 687px) {
+  .main {
+    width: 600px;
+  }
+  .rightSectionInner {
+    width: 600px;
+  }
 }
 @media all and (min-width: 1024px) {
   .rightSection {
@@ -128,10 +135,8 @@
 }
 
 .main {
-  width: 600px;
-  height: 200dvh;
+  height: 100dvh;
 }
-
 .followRecommend {
   font-size: 20px;
   font-weight: bold;
@@ -142,4 +147,11 @@
 }
 .followRecommend h3 {
   padding-bottom: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .followRecommend {
+    background-color: rgb(22, 24, 28);
+    color: white;
+  }
 }
